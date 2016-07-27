@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html ng-app="store">
-  <body>
-   <div ng-controller="StoreController as store"> <!-- attach controller; scope inside DOM element -->
-     <h1>{{store.product.name}}</h1>
-     <h2>${{store.product.price}}</h2>
-     <p>{{store.product.description}}</p>
-   </div>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+  <!-- attach controller; scope inside DOM element -->
+  <body ng-controller="StoreController as store">
+    <!-- hide when product is soldout, aka soldOut==true -->
+    <ul class="list-group">
+      <li class="list group-item" ng-repeat="product in store.products"> <!-- loop -->
+       <h3>
+        {{product.name}}
+        <em class="pull-right">{{product.price | currency}}</em><!-- money filter -->
+        <img ng-src="{{product.image.full}}"/>
+      </h3>
+       <p>{{product.description}}</p>
+       <!-- will only show when value of expression is true -->
+       <button ng-show="store.product.canPurchase">Add To Cart</button>
+     </li>
+   </ul>
   </body>
 </html>
