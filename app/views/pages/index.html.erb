@@ -4,20 +4,43 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </head>
+
   <!-- attach controller; scope inside DOM element -->
   <body ng-controller="StoreController as store">
     <!-- hide when product is soldout, aka soldOut==true -->
+    <h1 align="center">Kylie's Gem Store</h1>
     <ul class="list-group">
-      <li class="list group-item" ng-repeat="product in store.products"> <!-- loop -->
-       <h3>
+      <div class="list-group-item" ng-repeat="product in store.products"> <!-- loop -->
+      <h3>
         {{product.name}}
         <em class="pull-right">{{product.price | currency}}</em><!-- money filter -->
-        <img ng-src="{{product.image.full}}"/>
+        <img align="center" ng-src="{{product.image}}"/>
       </h3>
-       <p>{{product.description}}</p>
        <!-- will only show when value of expression is true -->
        <button ng-show="store.product.canPurchase">Add To Cart</button>
-     </li>
+       <!-- tabs -->
+       <section ng-controller="PanelController as panel"><!-- new panel controller-->
+         <ul class="nav nav-tabs">
+          <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Description</a></li>
+          <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specs</a></li>
+          <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+         </ul>
+          <!-- tabs content -->
+         <div class="panel" ng-show="panel.isSelected(1)">
+           <h4>Description</h4>
+           <p>{{product.description}}</p>
+         </div>
+         <div class="panel" ng-show="panel.isSelected(2)">
+           <h4>Specs</h4>
+           <blockquote>None</blockquote>
+         </div>
+         <div class="panel" ng-show="panel.isSelected(3)">
+           <h4>Reviews</h4>
+           <blockquote>None</blockquote>
+         </div>
+
+       </section>
+     </div>
    </ul>
   </body>
 </html>
