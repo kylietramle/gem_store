@@ -8,22 +8,28 @@
   <!-- attach controller; scope inside DOM element -->
   <body ng-controller="StoreController as store">
     <!-- hide when product is soldout, aka soldOut==true -->
-    <h1 align="center">Kylie's Gem Store</h1>
-    <ul class="list-group">
+    <h1 class="text-center">Kylie's Gem Store</h1>
+    <div class="list-group">
       <div class="list-group-item" ng-repeat="product in store.products"> <!-- loop -->
       <h3>
         {{product.name}}
         <em class="pull-right">{{product.price | currency}}</em><!-- money filter -->
-        <img align="center" ng-src="{{product.image}}"/>
+        <div class="img-wrap"><img ng-src="{{product.image}}"/></div>
       </h3>
        <!-- will only show when value of expression is true -->
        <button ng-show="store.product.canPurchase">Add To Cart</button>
        <!-- tabs -->
        <section ng-controller="PanelController as panel"><!-- new panel controller-->
-         <ul class="nav nav-tabs">
-          <li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Description</a></li>
-          <li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specs</a></li>
-          <li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+         <ul class="nav nav-pills">
+          <li ng-class="{ active:panel.isSelected(1) }">
+            <a href ng-click="panel.selectTab(1)">Description</a>
+          </li>
+          <li ng-class="{ active:panel.isSelected(2) }">
+            <a href ng-click="panel.selectTab(2)">Specs</a>
+          </li>
+          <li ng-class="{ active:panel.isSelected(3) }">
+            <a href ng-click="panel.selectTab(3)">Reviews</a>
+          </li>
          </ul>
           <!-- tabs content -->
          <div class="panel" ng-show="panel.isSelected(1)">
@@ -35,12 +41,50 @@
            <blockquote>None</blockquote>
          </div>
          <div class="panel" ng-show="panel.isSelected(3)">
-           <h4>Reviews</h4>
-           <blockquote>None</blockquote>
-         </div>
+          <ul>
+            <h4>Reviews</h4>
+              <li ng-repeat="review in product.reviews">
+                <blockquote>
+                  <strong>{{review.stars}} Stars</strong>
+                  {{review.body}}
+                  <cite class="clearfix">—{{review.author}}</cite>
+                </blockquote>
+              </li>
+          </ul>
+            
+          <!--  Review Form -->
+          <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+            <!--  Live Preview -->
+            <ul>
+              <li>
+                <blockquote>
+                  <strong> {{ reviewCtrl.review.stars }} Stars</strong>
+                  {{ reviewCtrl.review.body }}
+                  <cite class="clearfix">—{{reviewCtrl.review.author}}</cite>
+                </blockquote>
+              </li>
+            </ul>
 
+            <!--  Review Form -->
+            <h4>Submit a Review</h4>
+              <fieldset class="form-group">
+                <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+                  <option value="">Rate the Product</option>
+                </select>
+              </fieldset>
+              <fieldset class="form-group">
+                <textarea ng-model="reviewCtrl.review.body" class="form-control" placeholder="Write a short review of the product..." title="Review"></textarea>
+              </fieldset>
+              <fieldset class="form-group">
+                <input ng-model="reviewCtrl.review.author" type="email" class="form-control" placeholder="jimmyDean@example.org" title="Email" />
+              </fieldset>
+              <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+              </fieldset>
+          </form>
+         </div>
        </section>
      </div>
-   </ul>
+   </div>
   </body>
 </html>
