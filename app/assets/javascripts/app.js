@@ -22,8 +22,9 @@
     this.review = {};
 
     this.addReview = function(product) {
+      this.review.createdOn = Date.now();
       product.reviews.push(this.review);  // push controller's review onto reviews array
-    this.review = {};     // clear out preview form
+      this.review = {};     // clear out preview form
     };
 
   });
@@ -38,13 +39,13 @@
     reviews: [
       {
         stars: 5,
-        body: 'I love this gem!',
-        author: 'willy@williors.com'
+        body: 'This bear is adorable!',
+        author: 'kylie@williors.com'
       },
       {
-        stars: 1,
-        body: 'Eh it is all right.',
-        author: 'willy-kun@wlliors.com'
+        stars: 2,
+        body: 'I do not like this bear at all.',
+        author:  'what-a-hater@williors.com'
       }
     ]
   },
