@@ -39,12 +39,12 @@
     reviews: [
       {
         stars: 5,
-        body: 'This bear is adorable!',
+        body: 'This gem is beautiful!!',
         author: 'kylie@williors.com'
       },
       {
         stars: 2,
-        body: 'I do not like this bear at all.',
+        body: 'Whatever. Could be prettier.',
         author:  'what-a-hater@williors.com'
       }
     ]
