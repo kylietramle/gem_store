@@ -1,24 +1,17 @@
-# README
+# Kylie's Gem Store
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+* A gem store where users can write reviews for the jewels and see the live preview of their comments.
 
-Things you may want to cover:
 
-* Ruby version
+## Tech
+* Ruby 2.3.1
+* Angular 1
+* Bootstrap
 
-* System dependencies
+## Features
+* Live preview of reviews
+* Form validation & submission
+* Responsive tabs that display gem info
+* Filters on gem data: date & price
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
