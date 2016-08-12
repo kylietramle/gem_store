@@ -15,3 +15,4 @@
 * Responsive tabs that display gem info
 * Filters on gem data: date & price
 
+![Live Preview](https://github.com/kylietramle/gem_store/blob/master/app/assets/screenshots/Screen%20Shot%202016-08-12%20at%2011.48.52%20AM.png)
